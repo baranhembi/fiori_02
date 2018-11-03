@@ -1,0 +1,139 @@
+<core:View displayBlock="true"
+           height="100%"
+           controllerName="sap.ui.demo.fiori2.controller.Detail"
+           xmlns="sap.uxap"
+           xmlns:m="sap.m"
+           xmlns:f="sap.f"
+           xmlns:form="sap.ui.layout.form"
+           xmlns:core="sap.ui.core">
+    <ObjectPageLayout id="ObjectPageLayout"
+                      showTitleInHeaderContent="true"
+                      alwaysShowContentHeader="false"
+                      preserveHeaderStateOnScroll="false"
+                      headerContentPinnable="true"
+                      isChildPage="true"
+                      upperCaseAnchorBar="false">
+        
+        <headerTitle>
+            <ObjectPageDynamicHeaderTitle>
+                <expandedHeading>
+                    <m:Title text="{products>name}" wrapping="true" class="sapUiSmallMarginEnd"/>
+                </expandedHeading>
+
+                <snappedHeading>
+                    <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+                        <m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+                            <f:Avatar src="{products>image_url}"
+                                      displaySize="S"
+                                      displayShape="Square"
+                                      class="sapUiTinyMarginEnd"/>
+                            <m:Title text="{products>name}" wrapping="true"/>
+                        </m:FlexBox>
+                    </m:FlexBox>
+                </snappedHeading>                
+                <actions>
+                    <m:ToggleButton
+                        text="Alterar"
+                        type="Emphasized"
+                        press="onEditToggleButtonPress"
+                    />
+                    <m:Button
+                        text="Excluir"
+                        type="Transparent"/>
+                    <m:Button
+                        text="Copiar"
+                        type="Transparent"/>
+                    <m:Button
+                        icon="sap-icon://action"
+                        type="Transparent"/>
+                </actions>
+            </ObjectPageDynamicHeaderTitle>
+        </headerTitle>
+        <headerContent>
+            <m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+                <f:Avatar src="{products>image_url}"
+                          displaySize="L"
+                          displayShape="Square"
+                          class="sapUiTinyMarginEnd">
+                </f:Avatar>
+                <m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+                    <m:Label text="Categoria"/>
+                    <m:Text text="{products>primary_category}"/>
+                </m:VBox>
+                <m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+                    <m:Label text="Seção"/>
+                    <m:Text text="{products>secondary_category}"/>
+                </m:VBox>
+                <m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
+                    <m:Label text="Preço"/>
+                    <m:ObjectNumber number="{products>price_in_cents} cents" emphasized="false"/>
+	
+                </m:VBox>
+            </m:FlexBox>
+        </headerContent>
+        
+        <sections>
+            <ObjectPageSection title="Informações Gerais">
+                <subSections>
+                    <ObjectPageSubSection>
+                        <blocks>
+                            <form:SimpleForm
+                                maxContainerCols="2"
+                                editable="true"
+                                layout="ResponsiveGridLayout"
+                                labelSpanL="12"
+                                labelSpanM="12"
+                                emptySpanL="0"
+                                emptySpanM="0"
+                                columnsL="1"
+                                columnsM="1">
+                                <form:content>
+                                    <m:Label text="Cód.Produto"/>
+                                    <m:Text text="{products>id}"/>
+                                    <m:Label text="Tags"/>
+                                    <m:Text text="{products>tags}"/>
+                                    <m:Label text="Produtor"/>
+                                    <m:Text text="{products>producer_name}"/>                                
+                                </form:content>
+                            </form:SimpleForm>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+            <ObjectPageSection title="Detalhes">
+                <subSections>
+                    <ObjectPageSubSection>
+                        <blocks>
+                            <form:SimpleForm
+                                maxContainerCols="2"
+                                editable="true"
+                                layout="ResponsiveGridLayout"
+                                labelSpanL="12"
+                                labelSpanM="12"
+                                emptySpanL="0"
+                                emptySpanM="0"
+                                columnsL="1"
+                                columnsM="1">
+                                <form:content>
+                                    <m:Label text="% Álcool"/>
+                                    <m:Text text="{products>alcohol_content} ml"/>
+                                    <m:Label text="Sugestão do Chef"/>
+                                    <m:Text text="{products>serving_suggestion}"/>
+                                </form:content>
+                            </form:SimpleForm>
+                        </blocks>
+                    </ObjectPageSubSection>
+                </subSections>
+            </ObjectPageSection>
+
+        </sections>
+        <footer>
+            <m:OverflowToolbar>
+                <m:ToolbarSpacer />
+                <m:Button type="Accept" text="Salvar" />
+                <m:Button type="Reject" text="Cancelar" />
+            </m:OverflowToolbar>
+        </footer>
+    </ObjectPageLayout>
+</core:View>
